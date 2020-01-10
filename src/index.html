@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="journal.css">
+</head>
+
+<body>
+    <h1>Daily Journal</h1>
+    <!-- You are going to use the form component, the fieldset, label, input, textarea, select, and 
+        the option elements to build your form. -->
+    <form action="">
+        <fieldset>
+            <label for="journalDate">Date of Entry</label>
+            <input type="date" name="journalDate" id="journalDate">
+        </fieldset>
+        <fieldset>
+                <label for="journalText">Concepts Covered</label>
+                <input type="text" name="journalTest" id="journalText">
+        </fieldset>
+        <fieldset>
+            <label for="journalTextArea">Journal Entry</label>
+            <textarea name="journalTextArea" id="journalTextArea" cols="30" rows="5"></textarea>
+        </fieldset>
+        <fieldset>
+            <label for="journalSelect">Mood for the day</label>
+            <select name="journalSelect" id="journalSelect">
+                <option value="Happy">Happy</option>
+                <option value="Sad">Sad</option>
+                <option value="Confused">Confused</option>
+                <option value="Melancholic">Melancholic</option>
+                <option value="Frustrated">Frustrated</option>
+                <option value="Excited">Excited</option>
+                <option value="Undefineable">Undefineable</option>
+            </select>
+        </fieldset>
+        <fieldset>
+            <button type="button">Record Journal Entry</button>
+        </fieldset>
+    </form>
+</body>
+
+</html>
