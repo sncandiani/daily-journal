@@ -22,3 +22,34 @@ const moreLearned = {
 
 journalEntries.entry.push(moreLearned)
 console.log(journalEntries)
+
+/*
+    Purpose: To create, and return, a string template that
+    represents a single journal entry object as HTML
+
+    Arguments: journalEntry (object)
+*/
+const journalContainer = document.querySelector(".entryLog")
+
+const makeJournalEntryComponent = (journalEntries) => {
+    // Create your own HTML structure for a journal entry
+    return `
+        <h1>${journalEntry.date}</h1>
+        <h2>${journalEntry.concepts}</h2>
+        <h3>${journalEntry.comments}</h3>
+        <h4>${journalEntry.mood}</h4>
+    `
+}
+
+/*
+    Purpose: To render all journal entries to the DOM
+
+    Arguments: entries (array of objects)
+*/
+const renderJournalEntries = (entries) => {
+    const entryInfo = makeJournalEntryComponent(entries)
+    journalContainer.innerHTML += entryInfo
+}
+
+// Invoke the render function
+renderJournalEntries(journalEntries)
