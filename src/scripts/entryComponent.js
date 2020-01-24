@@ -8,7 +8,3 @@ const makeJournalEntryComponent = (journalEntries) => {
     `
 }
 
-
-
-
-
