@@ -1,7 +1,7 @@
 //Move the code that is responsible for modifying the DOM into this file
+const journalContainer = document.querySelector(".entryLog")
 
 
-//render html to DOM
 const renderJournalEntries = (entries) => {
     entries.forEach(entry => {
         const entryInfo = makeJournalEntryComponent(entry)
