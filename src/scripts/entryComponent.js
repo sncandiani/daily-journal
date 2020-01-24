@@ -1,4 +1,3 @@
-//Move the code that is responsible for creating the journal entry HTML component into this file.
 const makeJournalEntryComponent = (journalEntries) => {
     // Create your own HTML structure for a journal entry
     return `
@@ -9,8 +8,3 @@ const makeJournalEntryComponent = (journalEntries) => {
     `
 }
 
-const makingEntries = (entries)
-    entries.forEach(entry => {          
-    const entryHtml = makeJournalEntryComponent(entry); //Make html for each entry
-    journalContainer.innerHTML += entryHtml //Append the html to the dom
-})
