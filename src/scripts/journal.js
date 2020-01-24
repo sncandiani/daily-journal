@@ -1,0 +1,1 @@
+API.getJournalEntries().then(renderJournalEntries)
