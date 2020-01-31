@@ -8,3 +8,4 @@ const makeJournalEntryComponent = (journalEntries) => {
     `
 }
 
+export default makeJournalEntryComponent
