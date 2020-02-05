@@ -1,3 +1,4 @@
+const baseURL = "http://localhost:8088/entries"
 const API = {
     getJournalEntries () {
         return fetch("http://localhost:8088/entries")
@@ -11,7 +12,12 @@ const API = {
         },
         body: JSON.stringify(newJournalEntry)
     })
-    }
+    }, 
+    deleteButton(buttonId){
+        return fetch(`${baseURL}/${buttonId}`, {
+            method: "DELETE"
+        });
+}
 }
 
 export default API
