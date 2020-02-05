@@ -8,6 +8,7 @@ const journalDate = document.getElementById("journalDate")
 const journalConcepts = document.getElementById("journalText")
 const journalComments = document.getElementById("journalTextArea")
 const journalMood = document.getElementById("journalSelect")
+
 const newJournalEntry = (date, concepts, comments, mood) => {
     return {
         "date": date,
@@ -17,36 +18,46 @@ const newJournalEntry = (date, concepts, comments, mood) => {
     }
 }
 
-const journalArray = [journalDate, journalConcepts, journalComments, journalMood]
-
 const addClickEvent = {
     addSaveEventListener() {
         const button = document.getElementById("recordJournalButton")
-        /* console.log(button) */
-
-
-        button.addEventListener("click", (e) => {
-            journalArray.forEach(entry => {
-                if(entry.value === "" || entry.value === "Please Select") {
+        button.addEventListener("click", () => {
+                if(journalDate.value === "" || journalMood.value === "Please Select" || journalConcepts.value === "" || journalComments.value === "") {
                     console.log("Entry needs information")
                 }
                 else {
-
-                    return fetch("http://localhost:8088/entries", { // Replace "url" with your API's URL
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(newJournalEntry(`${journalDate.value}`, `${journalConcepts.value}`, `${journalComments.value}`, `${journalMood.value}`))
-            })
-                .then(API.getJournalEntries)
-                .then(renderJournalEntries)
-
+                API.saveJournalEntries(newJournalEntry(journalDate.value,journalConcepts.value,journalComments.value,journalMood.value)).then(API.getJournalEntries).then(renderJournalEntries)
                 }
             })
 
+        }, 
+
+    addRadioEventListener() {
+        const radio1 = document.getElementById("radio--1") 
+        const radio2 = document.getElementById("radio--2") 
+        const radio3 = document.getElementById("radio--3") 
+        radio1.addEventListener("click", () => {
+            const mood = event.target.value
+            console.log(mood)
+           API.getJournalEntries().then(response => response.filter(response => {
+            return response.mood.toUpperCase() === mood.toUpperCase()}
+            )).then(renderJournalEntries)
+        })
+        radio2.addEventListener("click", () => {
+            const mood = event.target.value
+            API.getJournalEntries().then(response => response.filter(response => {
+                return response.mood.toUpperCase() === mood.toUpperCase()}
+                )).then(renderJournalEntries)
+        })
+        radio3.addEventListener("click", () => {
+            const mood = event.target.value
+            API.getJournalEntries().then(response => response.filter(response => {
+                return response.mood.toUpperCase() === mood.toUpperCase()}
+                )).then(renderJournalEntries)
         })
     }
-}
+    }
 
 addClickEvent.addSaveEventListener()
+addClickEvent.addRadioEventListener()
+
