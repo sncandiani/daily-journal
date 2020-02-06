@@ -18,7 +18,7 @@ const newJournalEntry = (date, concepts, comments, mood) => {
     }
 }
 
-const addClickEvent = {
+const addSaveEvent = {
     addSaveEventListener() {
         const button = document.getElementById("recordJournalButton")
         button.addEventListener("click", () => {
@@ -30,15 +30,16 @@ const addClickEvent = {
                 }
             })
 
-        }, 
+        }
+} 
 
+const addRadioEvent = {
     addRadioEventListener() {
         const radio1 = document.getElementById("radio--1") 
         const radio2 = document.getElementById("radio--2") 
         const radio3 = document.getElementById("radio--3") 
         radio1.addEventListener("click", () => {
             const mood = event.target.value
-            console.log(mood)
            API.getJournalEntries().then(response => response.filter(response => {
             return response.mood.toUpperCase() === mood.toUpperCase()}
             )).then(renderJournalEntries)
@@ -56,8 +57,32 @@ const addClickEvent = {
                 )).then(renderJournalEntries)
         })
     }
-    }
+}
+ 
+addSaveEvent.addSaveEventListener()
+addRadioEvent.addRadioEventListener()
 
-addClickEvent.addSaveEventListener()
-addClickEvent.addRadioEventListener()
+const deleteSection = document.getElementById("entryLog")
+const deleteEventListener = {
+    addDeleteEvent() {
+         deleteSection.addEventListener("click", (event) => {
+        if(event.target.id.startsWith("deleteButton--")){
+            /* const deleteBtnId = event.target.id;
+            const deleteBtnArray = deleteBtnId.split("--");
+            const buttonIdToDelete = deleteBtnArray[1]; */
+
+            const buttonId = event.target.id.split("--")[1]
+            console.log(buttonId)
+
+            API.deleteButton(buttonId)
+            .then(API.getJournalEntries)
+            .then(renderJournalEntries)
+            
+        }
+    })
+}
+}
+
+deleteEventListener.addDeleteEvent()
+
 
