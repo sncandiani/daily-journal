@@ -10,20 +10,8 @@ const renderJournalEntries = (entries) => {
 
         journalContainer.innerHTML += entryInfo
     })
-    /* const entryInfo = makeJournalEntryComponent(entries)
-    journalContainer.innerHTML += entryInfo */
 }
 
-/* const makeEntries = (entries) => {
-    entries.forEach(entry => {
-        renderJournalEntries(entry)
-    }) */
-
-/* .then(entries => {
-    
-    entries.forEach(entry => {
-        renderJournalEntries(entry)
-    }) */
 
 
 export default renderJournalEntries

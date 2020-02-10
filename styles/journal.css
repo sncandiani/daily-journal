@@ -1,23 +1,22 @@
+body {
+    
+}
 .journalForm {
     display: flex;
     flex-direction: column;
     width: 25%;
-    border: 5px solid pink;
-    font-family: "times new roman";
-    background-color: ivory;
+    font-family: "verdana";
 }
 .titleHeading {
     display: flex;
     justify-content: center;
-    font-family: "times new roman";
+    font-family: "verdana";
     padding-bottom: 10px;
-    border: 5px dotted peachpuff;
 
 }
 button {
-    background-color: papayawhip;
-    font-family: "Lucida Sans Regular";
-    border: 5px dotted peachpuff;
+    background-color: lavender;
+    font-family: "verdana";
     padding: 10px;
 
 }

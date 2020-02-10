@@ -6,6 +6,7 @@ const makeJournalEntryComponent = (journalEntries) => {
         <h3>${journalEntries.comments}</h3>
         <h4>${journalEntries.mood}</h4>
         <button id="deleteButton--${journalEntries.id}">Delete</button>
+        <button id="editButton--${journalEntries.id}">Edit</button>
     `
 }
 
