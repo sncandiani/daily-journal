@@ -3,7 +3,7 @@ import renderJournalEntries from "./entriesDOM.js"
 
 
 API.getJournalEntries().then(renderJournalEntries)
-
+const hiddenEntryId = document.querySelector("#journalHiddenId")
 const journalDate = document.getElementById("journalDate")
 const journalConcepts = document.getElementById("journalText")
 const journalComments = document.getElementById("journalTextArea")
@@ -17,17 +17,40 @@ const newJournalEntry = (date, concepts, comments, mood) => {
         "mood": mood
     }
 }
+const clearForm = () => {
+  
+    hiddenEntryId.value = "";
+    journalDate.value = "";
+    journalConcepts.value = "";
+    journalComments.value = "";
+    journalMood.value = "";
+  }
+
 
 const addSaveEvent = {
     addSaveEventListener() {
         const button = document.getElementById("recordJournalButton")
         button.addEventListener("click", () => {
-                if(journalDate.value === "" || journalMood.value === "Please Select" || journalConcepts.value === "" || journalComments.value === "") {
+            const journal = {
+                hiddenId: hiddenEntryId.value,
+                date: journalDate.value, 
+                concepts: journalConcepts.value,
+                comments: journalComments.value, 
+                mood: journalMood.value 
+              };
+                if(journal.date === "" || journal.mood === "Please Select" || journal.concepts === "" || journal.comments === "") {
                     console.log("Entry needs information")
+                } else if (journal.hiddenId !== "") {
+                    API.updateJournalEntriesFetch(journal, journal.hiddenId)
+                    .then(() => {
+                        API.getJournalEntries()
+                          .then(renderJournalEntries)
+                          .then(clearForm);
+                      });
                 }
                 else {
                 API.saveJournalEntries(newJournalEntry(journalDate.value,journalConcepts.value,journalComments.value,journalMood.value)).then(API.getJournalEntries).then(renderJournalEntries)
-                }
+                } 
             })
 
         }
@@ -62,27 +85,27 @@ const addRadioEvent = {
 addSaveEvent.addSaveEventListener()
 addRadioEvent.addRadioEventListener()
 
-const deleteSection = document.getElementById("entryLog")
-const deleteEventListener = {
-    addDeleteEvent() {
-         deleteSection.addEventListener("click", (event) => {
+const changeSection = document.getElementById("entryLog")
+const changeEventListener = {
+    addChangeEvent() {
+         changeSection.addEventListener("click", (event) => {
         if(event.target.id.startsWith("deleteButton--")){
-            /* const deleteBtnId = event.target.id;
-            const deleteBtnArray = deleteBtnId.split("--");
-            const buttonIdToDelete = deleteBtnArray[1]; */
-
             const buttonId = event.target.id.split("--")[1]
-            console.log(buttonId)
-
             API.deleteButton(buttonId)
             .then(API.getJournalEntries)
-            .then(renderJournalEntries)
-            
+            .then(renderJournalEntries)    
+        } else if (event.target.id.startsWith("editButton--")) {
+            const editId = event.target.id.split("--")[1]
+            API.updateJournalEntries(editId)
+            .then(API.getJournalEntries(editId))
+
         }
     })
 }
 }
 
-deleteEventListener.addDeleteEvent()
+changeEventListener.addChangeEvent()
+
+
 
 
