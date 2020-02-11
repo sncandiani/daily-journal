@@ -3,7 +3,7 @@
     {
       "hiddenId": "4",
       "date": "1998-05-03",
-      "concepts": "my birthday",
+      "concepts": "my not birthday",
       "comments": "ooo",
       "mood": "Confused",
       "id": 4
@@ -23,6 +23,13 @@
       "comments": "sdfkjhkfjlh",
       "mood": "Excited",
       "id": 6
+    },
+    {
+      "date": "0001-01-01",
+      "concepts": "Arrays",
+      "comments": "Excited to be on chapter 11 of daily journal! ",
+      "mood": "Frustrated",
+      "id": 7
     }
   ]
 }

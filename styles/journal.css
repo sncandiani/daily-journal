@@ -1,10 +1,6 @@
-body {
-    
-}
-.journalForm {
+.journalBody {
     display: flex;
     flex-direction: column;
-    width: 25%;
     font-family: "verdana";
 }
 .titleHeading {
@@ -12,12 +8,39 @@ body {
     justify-content: center;
     font-family: "verdana";
     padding-bottom: 10px;
-
+    padding-left: 20px;
+    padding-right: 20px;
+    color: lavenderblush;
+    background-color: lightpink;
+    width: 35%;
 }
 button {
-    background-color: lavender;
     font-family: "verdana";
     padding: 10px;
-
+}
+fieldset.buttonField {
+    display: flex;
+    justify-content: center;
+    width: 10%;
 }
 
+.filterAndSearch {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+fieldset {
+    border: 2.5px solid powderblue;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 25px;
+}
+#entryLog section {
+    display: flex;
+    border: 2.5px solid powderblue;
+    flex-direction: column;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 25px;
+}

@@ -105,7 +105,28 @@ const changeEventListener = {
 }
 
 changeEventListener.addChangeEvent()
-
-
-
-
+let searched = []
+const searchSection = document.getElementById("searchButton")
+const searchEventListener = {
+    addSearchEvent() {
+        searchSection.addEventListener("keypress", (event) => {
+            const searchVals = searchSection.value 
+            if(event.keyCode === 13 && searchVals === "") {
+                window.alert("Please enter a search value")
+            } else if (event.keyCode === 13) {
+                API.getJournalEntries().then((entries => {
+                   entries.forEach(entry => {
+                       const entryComments = entry["comments"]
+                       if(entryComments.includes(searchVals)) {
+                           searched.push(entry)
+                           renderJournalEntries(searched)
+                           searched = []
+                       }
+                   })
+                }))
+                
+            }
+        })
+    }
+}
+searchEventListener.addSearchEvent()
